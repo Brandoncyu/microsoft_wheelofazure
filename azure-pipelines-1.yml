@@ -20,6 +20,8 @@ steps:
   inputs:
     version: '2.1.300' 
 
+- script: dotnet restore
+
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
@@ -37,3 +39,16 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    command: build
+    projects: '**/*.csproj'
+    arguments: '--configuration Release' # Update this to match your need
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: test
+    projects: '**/*Tests/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
