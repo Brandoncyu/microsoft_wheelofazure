@@ -20,6 +20,14 @@ steps:
   inputs:
     version: '2.1.300' 
 
+- script: dotnet restore
+
+- task: NuGetToolInstaller@1
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
+
 - task: DotNetCoreCLI@2
   displayName: Build
   inputs:
