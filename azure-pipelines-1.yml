@@ -20,8 +20,6 @@ steps:
   inputs:
     version: '2.1.300' 
 
-- script: dotnet restore
-
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
